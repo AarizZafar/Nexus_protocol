@@ -1,0 +1,9 @@
+{
+    "build": "go build -o main .",
+    "watch": {
+      "extensions": [".go"],
+      "paths": ["."],
+      "ignore": ["vendor"]
+    },
+    "run": "./Nexus_protocol.git.exe"
+  }
