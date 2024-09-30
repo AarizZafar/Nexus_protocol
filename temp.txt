@@ -1,0 +1,100 @@
+<!-- MAC Address
+CPU Serial Number
+Motherboard Serial Number
+BIOS Serial Number
+Hard Drive Serial Number
+SSD Serial Number
+TPM (Trusted Platform Module) ID
+GPU Serial Number
+RAM Serial Number
+Network Interface Controller (NIC) ID -->
+Monitor Serial Number
+Baseboard Product ID
+System UUID (Universally Unique Identifier)
+OS Installation ID
+Disk Volume Serial Number
+System Firmware Version
+Boot ROM Version
+GPU Vendor ID
+Device Tree Identifier (macOS)
+UEFI Firmware Version
+System Boot UUID
+USB Controller ID
+PCI Express Slot ID
+SIM Card Serial Number (on laptops with cellular)
+Bluetooth Adapter MAC Address
+Power Supply Serial Number
+Ethernet Adapter Serial Number
+Chipset ID
+DIMM Slot ID
+Fan Controller ID
+Sound Card Serial Number
+Graphics Bus ID
+CMOS Battery ID
+Printer Serial Number
+Keyboard Serial Number
+Mouse Serial Number
+Trackpad Serial Number
+Fingerprint Scanner ID
+Camera Serial Number
+Speaker Serial Number
+BIOS UUID
+Secure Boot ID
+Ethernet Controller Serial Number
+CD/DVD Drive Serial Number
+Thunderbolt Controller ID
+USB Device Serial Numbers
+Battery Serial Number (for laptops)
+Wi-Fi Adapter MAC Address
+GPU Memory ID
+Hard Disk Model Number
+L1 Cache Size (CPU)
+L2 Cache Size (CPU)
+L3 Cache Size (CPU)
+RAM Type (DDR3, DDR4, etc.)
+RAM Slot IDs
+RAID Controller ID
+Power Delivery Chip ID
+PCI Device ID
+SCSI Device ID
+FireWire Device ID
+Sound Card Model ID
+TPM Firmware Version
+Audio Chipset ID
+Video BIOS Version
+Wireless Chipset ID
+WLAN Adapter Vendor ID
+CPU Microcode Version
+Northbridge Chipset ID
+Southbridge Chipset ID
+PCH (Platform Controller Hub) ID
+System Partition UUID
+Disk Controller Model
+USB Hub Serial Numbers
+IPMI (Intelligent Platform Management Interface) ID
+SCSI Controller ID
+Fibre Channel Adapter ID
+Audio Jack Controller ID
+AC Adapter Serial Number (for laptops)
+Wireless Charging IC ID
+NAND Flash ID (for SSDs)
+TPM Public Key
+GPU Firmware Version
+NVMe Controller ID
+OS Product Key (Windows)
+OS Activation ID (Windows)
+BIOS Manufacturer ID
+SMBIOS Version
+ATA Controller ID
+Optical Drive Firmware Version
+Embedded Controller Firmware Version
+TPM Endorsement Key
+Ethernet Chipset ID
+USB-C Controller Serial Number
+Docking Station Serial Number
+PCI Slot Serial Number
+Webcam Model ID
+Embedded Security Processor ID
+Hardware Random Number Generator (RNG) ID
+Display Serial Number (on laptops)
+System Memory Bus ID
