@@ -45,38 +45,46 @@ section {
     letter-spacing: 0.1em;
 }
 
-.container {
-    position: absolute; /* Positioning the container */
-    left: 20px; /* Align to the left */
-    top: 20px; /* Position it at the top */
-    display: inline-block;
+/* Styling for BioMetrics containers */
+.BioMetrics {
+    position: absolute;
+    left: 20px;
     font-family: "Arial";
     font-size: 24px;
     color: rgba(255, 255, 255, 0.747); /* Set the color of the typing text to white */
+}
+
+/* Position the first message at the top */
+#ExtractIntroLine {
+    top: 20px; /* Position it at the top */
+}
+
+/* Position the second message below the first one */
+#BioMetrics {
+    top: 70px; /* Adjust this value to avoid overlapping (increased from 80px) */
 }
 
 .typed {
     overflow: hidden;
     white-space: nowrap;
     width: 0;
-    animation: typing;
-    animation-duration: 2.0s;
-    animation-timing-function: steps(30, end);
-    animation-fill-mode: forwards;
-}
-    
-@keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
+    animation: typing 3s steps(30, end) forwards; /* Updated to 3s for a smoother typing animation */
 }
 
+/* Typing animation */
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* Fade in animation for the welcome box */
 @keyframes fadeIn {
     0% { opacity: 0; }
     100% { opacity: 1; }
 }
 
+/* Fade out animation for the welcome box */
 @keyframes fadeOut {
     0% { opacity: 1; }
     100% { opacity: 0; }
 }
-

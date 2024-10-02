@@ -1,13 +1,13 @@
-<!-- MAC Address
-CPU Serial Number
-Motherboard Serial Number
+<!-- MAC Address     -->
+<!-- CPU Serial Number -->
+<!-- Motherboard Serial Number -->
 BIOS Serial Number
-Hard Drive Serial Number
+<!-- Hard Drive Serial Number -->
 SSD Serial Number
 TPM (Trusted Platform Module) ID
 GPU Serial Number
 RAM Serial Number
-Network Interface Controller (NIC) ID -->
+Network Interface Controller (NIC) ID
 Monitor Serial Number
 Baseboard Product ID
 System UUID (Universally Unique Identifier)
