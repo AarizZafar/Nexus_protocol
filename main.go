@@ -18,6 +18,5 @@ func main() {
 	fmt.Println("-------SYSTEM BIOMETRICS EXTRACTION PROCESS----------")
 	bioMetrics.ExtSysBioMetrix()
 
-
 	router.Run(port)
 }

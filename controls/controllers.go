@@ -3,9 +3,10 @@ package controllers
 import (
 	"fmt"
 	"net/http"
-
-	"github.com/AarizZafar/Nexus_protocol.git/netCredentials"
 	"github.com/gin-gonic/gin"
+
+	"github.com/AarizZafar/Nexus_protocol.git/bioMetrics"
+	"github.com/AarizZafar/Nexus_protocol.git/netCredentials"
 )
 
 // the netCred variabel starts with a lower case hence it is private
@@ -27,19 +28,21 @@ func NetAuthentication(ctx *gin.Context) {
 		fmt.Println("netName : ", netName)
 		fmt.Println("netPass : ", netPass)
 		ctx.HTML(http.StatusOK, "success.html", nil)
-
-
-		} else {
+	} else {
 		fmt.Println("WRONG CREDENTIALS ")
 		fmt.Println("netName : ", netName)
 		fmt.Println("netPass : Does not exist")
-
-
-		// // Failed authentication: render the login page with an error message
+		// Failed authentication: render the login page with an error message
 		// ctx.HTML(http.StatusUnauthorized, "login_page.html", gin.H{
 		// 	"error": "Invalid network name or password",
-		// })
-	}
+	    // })
+    }
+}
+
+func GetSysBioMetrix(c *gin.Context) {
+	// The BMstruct that we had declared in the bioMetrix file 
+	BMmodel := bioMetrics.BMstruct
+	c.JSON(http.StatusOK,BMmodel)
 }
 
 

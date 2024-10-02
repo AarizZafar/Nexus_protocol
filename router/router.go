@@ -21,7 +21,7 @@ func Router() *gin.Engine {
 	router.GET("/",          controllers.LoginPage)             
 	// Post used to send data from (browser) to like netName, netPass          
 	router.POST("/login",    controllers.NetAuthentication)      
-
+    router.GET("/getSysBioMetx", controllers.GetSysBioMetrix)
 	return router
 }
 

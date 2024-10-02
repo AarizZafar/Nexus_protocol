@@ -12,3 +12,5 @@ type SysBioMetrix struct {
 	GPUSerial         string
 	NICID             string
 }
+
+var BMstruct SysBioMetrix

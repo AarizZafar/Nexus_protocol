@@ -10,7 +10,12 @@ import (
 )
 
 var currOS = runtime.GOOS
+
+// Accessing it from the BMmodel file
 var BMstruct BMmodel.SysBioMetrix
+func AssignBMStruct() {
+	BMstruct = BMmodel.BMstruct
+}
 
 // ... - (variadic parameter) accept a parameter type defined or nil, the arguments are collected in a slice of string
 func safeCommandOutput(commands string, args ...string) string {
