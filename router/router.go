@@ -19,9 +19,12 @@ func Router() *gin.Engine {
 
 	// GET used to display -> web page, when we load a login page the browser will send a get request to server
 	router.GET("/",          controllers.LoginPage)             
+    
 	// Post used to send data from (browser) to like netName, netPass          
 	router.POST("/login",    controllers.NetAuthentication)      
+
     router.GET("/getSysBioMetx", controllers.GetSysBioMetrix)
+
 	return router
 }
 

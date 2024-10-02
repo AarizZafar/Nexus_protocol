@@ -32,18 +32,21 @@ document.addEventListener("DOMContentLoaded", () => {
         fetch('/getSysBioMetx').then(response => response.json()).then(
             data => {
                 BioMetricsDisplay.innerHTML = `
-                  <ul>
-                    <li>MAC                 : ${data.MAC}               </li>
-                    <li>CPU Serial          : ${data.CPUSerial}         </li>
-                    <li>Hard Drive Serial   : ${data.HardDriveSerial}   </li>
-                    <li>Mother Board Serial : ${data.MotherBoardSerial} </li>
-                    <li>BIOS Serial         : ${data.MotherBoardSerial} </li>
-                    <li>SSD Serial          : ${data.BIOSSerial}        </li>
-                    <li>TPM chip ID         : ${data.TPMChipID}         </li>
-                    <li>RAM Serial          : ${data.RAMSerial}         </li>
-                    <li>GPU Serial          : ${data.GPUSerial}         </li>
-                    <li>NICID               : ${data.NICID}             </li>
-                  </ul>
+                <div class="biometrics-list">
+                    <h2>System Biometrics</h2>
+                    <ul>
+                        <li><strong>MAC</strong> <span class="fixed-space"></span>: ${data.MAC}</li>
+                        <li><strong>CPU Serial</strong> <span class="fixed-space"></span>: ${data.CPUSerial}</li>
+                        <li><strong>Hard Drive Serial</strong> <span class="fixed-space"></span>: ${data.HardDriveSerial}</li>
+                        <li><strong>Mother Board Serial</strong> <span class="fixed-space"></span>: ${data.MotherBoardSerial}</li>
+                        <li><strong>BIOS Serial</strong> <span class="fixed-space"></span>: ${data.BIOSSerial}</li>
+                        <li><strong>SSD Serial</strong> <span class="fixed-space"></span>: ${data.SSDSerial}</li>
+                        <li><strong>TPM chip ID</strong> <span class="fixed-space"></span>: ${data.TPMChipID}</li>
+                        <li><strong>RAM Serial</strong> <span class="fixed-space"></span>: ${data.RAMSerial}</li>
+                        <li><strong>GPU Serial</strong> <span class="fixed-space"></span>: ${data.GPUSerial}</li>
+                        <li><strong>NIC ID</strong> <span class="fixed-space"></span>: ${data.NICID}</li>
+                    </ul>
+                </div>
                 `;
                 BioMetricsDisplay.classList.add('typed')
             }).catch( error => {

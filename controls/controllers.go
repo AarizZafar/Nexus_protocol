@@ -27,15 +27,13 @@ func NetAuthentication(ctx *gin.Context) {
 		fmt.Println("CORRECT CREDENTIALS ")
 		fmt.Println("netName : ", netName)
 		fmt.Println("netPass : ", netPass)
+
 		ctx.HTML(http.StatusOK, "success.html", nil)
 	} else {
 		fmt.Println("WRONG CREDENTIALS ")
 		fmt.Println("netName : ", netName)
 		fmt.Println("netPass : Does not exist")
-		// Failed authentication: render the login page with an error message
-		// ctx.HTML(http.StatusUnauthorized, "login_page.html", gin.H{
-		// 	"error": "Invalid network name or password",
-	    // })
+		ctx.HTML(http.StatusUnauthorized, "failure.html",nil)
     }
 }
 
@@ -44,5 +42,4 @@ func GetSysBioMetrix(c *gin.Context) {
 	BMmodel := bioMetrics.BMstruct
 	c.JSON(http.StatusOK,BMmodel)
 }
-
 

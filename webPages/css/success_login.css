@@ -83,15 +83,19 @@ section {
 .shade1 {
     opacity: 0.2;
 }
+
 .shade2 {
     opacity: 0.5;
 }
+
 .shade3 {
     opacity: 0.7;
 }
+
 .shade4 {
     opacity: 0.8;
 }
+
 .shade5 {
     opacity: 0.9;
 }
@@ -146,6 +150,50 @@ section {
     top: 70px; /* Adjust this value to avoid overlapping */
 }
 
+/* New styles for the biometrics display */
+.biometrics-list {
+    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Padding for inner spacing */
+    margin-top: 20px; /* Spacing from previous elements */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); /* Soft shadow for depth */
+    animation: fadeIn 1s ease-in-out forwards; /* Fade-in animation for the list */
+    width: 50vw; /* Make the list occupy half of the viewport width */
+    max-width: 600px; /* Set a max width to avoid stretching on larger screens */
+}
+
+.biometrics-list h2 {
+    text-align: center; /* Center the title */
+    margin-bottom: 15px; /* Space below the title */
+    font-size: 1.8em; /* Font size for title */
+}
+
+.biometrics-list ul {
+    list-style-type: none; /* Remove default bullet points */
+    padding: 0; /* Remove default padding */
+}
+
+.biometrics-list li {
+    display: flex; /* Use flexbox for alignment */
+    justify-content: space-between; /* Space items evenly */
+    padding: 15px 0; /* Increased vertical padding for each list item */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4); /* Light border between items */
+}
+
+.biometrics-list li:last-child {
+    border-bottom: none; /* Remove border from last item */
+}
+
+.biometrics-list strong {
+    color: #FFD700; /* Gold color for the labels */
+    width: 200px; /* Fixed width for labels to align values */
+}
+
+.biometrics-list span {
+    color: #fff; /* White color for values */
+}
+
+/* Typing animation */
 .typed {
     overflow: hidden;
     white-space: nowrap;
