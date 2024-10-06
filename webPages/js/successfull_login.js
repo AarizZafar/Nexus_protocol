@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     },3000);
 
-    /* simple understanding of the above code
+    /* SIMPLE UNDERSTANDING OF THE ABOVE CODE 
         fetch('/someEndpoint')
             .then(response => response.text())
             .then(data => {

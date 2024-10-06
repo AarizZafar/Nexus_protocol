@@ -1,131 +1,90 @@
 package main
 
 import (
-	"os/exec"
-	"runtime"
-	"strings"
+    "bytes"
+    "encoding/json"
+    "fmt"
+    "io/ioutil"
+    "net/http"
 )
 
-var currOS = runtime.GOOS
-
-// Helper function to execute system command and return the cleaned output
-func safeCommandOutput(command string, args ...string) string {
-	cmd := exec.Command(command, args...)
-	output, err := cmd.Output()
-	if err != nil {
-		return ""
-	}
-	return strings.TrimSpace(string(output))
+type Item struct {
+    ID    string `json:"id"`
+    Name  string `json:"name"`
+    Price int    `json:"price"`
 }
 
-// Function to extract system information and clean unnecessary labels
-func formatStr(output string) string {
-	lines := strings.Split(output, "\n")
-	for _, line := range lines {
-		trimmed := strings.TrimSpace(line)
-		if trimmed != "" && !strings.Contains(trimmed, "ProcessorId") && !strings.Contains(trimmed, "SerialNumber") && !strings.Contains(trimmed, "Name") {
-			return trimmed
-		}
-	}
-	return ""
+// Create an item
+func createItem() {
+    item := Item{
+        Name:  "Smartphone",
+        Price: 800,
+    }
+    jsonData, _ := json.Marshal(item)
+    resp, err := http.Post("http://13.90.73.228:8080/items", "application/json", bytes.NewBuffer(jsonData))
+    if err != nil {
+        fmt.Println("Error:", err)
+        return
+    }
+    defer resp.Body.Close()
+    body, _ := ioutil.ReadAll(resp.Body)
+    fmt.Println("Response:", string(body))
 }
 
-func getSysInfo(linuxCmd []string, darwinCmd []string, windowsCmd []string, formatStr func(string) string) string {
-	var output string
-	switch currOS {
-	case "linux":
-		output = safeCommandOutput(linuxCmd[0], linuxCmd[1:]...)
-	case "darwin":
-		output = safeCommandOutput(darwinCmd[0], darwinCmd[1:]...)
-	case "windows":
-		output = safeCommandOutput(windowsCmd[0], windowsCmd[1:]...)
-	default:
-		return ""
-	}
-	if formatStr != nil {
-		output = formatStr(output)
-	}
-	return output
+// Get items
+func getItems() {
+    resp, err := http.Get("http://13.90.73.228:8080/items")
+    if err != nil {
+        fmt.Println("Error:", err)
+        return
+    }
+    defer resp.Body.Close()
+    body, _ := ioutil.ReadAll(resp.Body)
+    fmt.Println("Response:", string(body))
 }
 
-// Function to get BIOS Serial Number
-func getBIOSSerial() string {
-	return getSysInfo(
-		[]string{"dmidecode", "-s", "system-serial-number"},
-		nil,
-		[]string{"wmic", "bios", "get", "SerialNumber"},
-		formatStr,
-	)
+// Update an item
+func updateItem(id string) {
+    item := Item{
+        Name:  "Updated Smartphone",
+        Price: 1000,
+    }
+    jsonData, _ := json.Marshal(item)
+    req, _ := http.NewRequest(http.MethodPut, "http://13.90.73.228:8080/items/"+id, bytes.NewBuffer(jsonData))
+    req.Header.Set("Content-Type", "application/json")
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    if err != nil {
+        fmt.Println("Error:", err)
+        return
+    }
+    defer resp.Body.Close()
+    body, _ := ioutil.ReadAll(resp.Body)
+    fmt.Println("Response:", string(body))
 }
 
-// Function to get SSD Serial Number
-func getSSDSerial() string {
-	return getSysInfo(
-		[]string{"lsblk", "-d", "-o", "SERIAL"},
-		[]string{"diskutil", "info", "/"},
-		[]string{"wmic", "diskdrive", "get", "SerialNumber"},
-		formatStr,
-	)
-}
-
-// Function to get TPM ID
-func getTPMChipID() string {
-	return getSysInfo(
-		[]string{"dmesg"},
-		nil,
-		[]string{"wmic", "tpminformation", "get", "ManufacturerID"},
-		formatStr,
-	)
-}
-
-// Function to get GPU Serial Number
-func getGPUSerial() string {
-	return getSysInfo(
-		[]string{"lspci", "-vnn"},
-		[]string{"system_profiler", "SPDisplaysDataType"},
-		[]string{"wmic", "path", "win32_videocontroller", "get", "name"},
-		formatStr,
-	)
-}
-
-// Function to get RAM Serial Number
-func getRAMSerial() string {
-	return getSysInfo(
-		[]string{"sudo", "dmidecode", "-t", "memory"},
-		nil,
-		[]string{"wmic", "memorychip", "get", "SerialNumber"},
-		formatStr,
-	)
-}
-
-// Function to get NIC ID
-func getNICID() string {
-	return getSysInfo(
-		[]string{"lspci", "-nn"},
-		[]string{"system_profiler", "SPNetworkDataType"},
-		[]string{"wmic", "nic", "get", "Name"},
-		formatStr,
-	)
-}
-
-// Example function to call and display all biometrics
-func AssignBiometrics() {
-	biosSerial := getBIOSSerial()
-	ssdSerial := getSSDSerial()
-	tpmID := getTPMChipID()
-	gpuSerial := getGPUSerial()
-	ramSerial := getRAMSerial()
-	nicID := getNICID()
-
-	// Print the biometrics
-	println("BIOS Serial Number:", biosSerial)
-	println("SSD Serial Number:", ssdSerial)
-	println("TPM ID:", tpmID)
-	println("GPU Serial Number:", gpuSerial)
-	println("RAM Serial Number:", ramSerial)
-	println("NIC ID:", nicID)
+// Delete an item
+func deleteItem(id string) {
+    req, _ := http.NewRequest(http.MethodDelete, "http://13.90.73.228:8080/items/"+id, nil)
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    if err != nil {
+        fmt.Println("Error:", err)
+        return
+    }
+    defer resp.Body.Close()
+    body, _ := ioutil.ReadAll(resp.Body)
+    fmt.Println("Response:", string(body))
 }
 
 func main() {
-	AssignBiometrics()
+    // Replace <VM-IP> with your Azure VM's IP address
+    // Replace <ITEM_ID> with an actual item ID after testing the getItems() call
+
+    createItem()       // Test Create
+    getItems()         // Test Read
+
+    // Replace with a valid ID from getItems() response
+    updateItem("item-id")   // Test Update
+    deleteItem("item-id")   // Test Delete
 }
