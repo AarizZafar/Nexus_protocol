@@ -1,5 +1,6 @@
 package BMmodel
 
+
 type SysBioMetrix struct {
 	MAC               string
 	CPUSerial         string

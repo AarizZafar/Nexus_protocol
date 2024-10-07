@@ -256,9 +256,6 @@ func getNICID() string {
 
 
 
-
-
-
 func ExtSysBioMetrix() {
 	BMstruct.MAC = getMACAdd()
 	BMstruct.CPUSerial = getCPUSerial()

@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"encoding/json"
 
-	"github.com/AarizZafar/Nexus_protocol.git/BMmodel"
+	"github.com/AarizZafar/Nexus_protocol.git/bioMetrics"
 )
 
 const baseURL = "http://13.90.73.228:8080/verify"
@@ -21,8 +21,8 @@ func handleErr(err error) {
 
 func SendBioMetx() {
 	// the device data that we have assigned to the struct in our local code
-	jsonData, _ := json.Marshal(BMmodel.BMstruct)
-	fmt.Println(jsonData)
+	jsonData, err := json.Marshal(bioMetrics.BMstruct)
+	handleErr(err)
 
 	resp, err := http.Post(baseURL, "application/json", bytes.NewBuffer(jsonData))
 	handleErr(err)
