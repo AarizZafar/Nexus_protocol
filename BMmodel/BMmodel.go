@@ -1,6 +1,5 @@
 package BMmodel
 
-
 type SysBioMetrix struct {
 	MAC               string
 	CPUSerial         string
@@ -13,5 +12,3 @@ type SysBioMetrix struct {
 	GPUSerial         string
 	NICID             string
 }
-
-var BMstruct SysBioMetrix
