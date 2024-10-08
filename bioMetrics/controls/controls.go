@@ -1,7 +1,6 @@
 package controls
 
 import (
-	"fmt"
 	"os/exec"
 	"runtime"
 	"strings"
@@ -258,7 +257,6 @@ func extractSystemUUID(output string) string {
 		count++;
 	}
 	if trimmed_data[0] != "" {
-		fmt.Println(trimmed_data[0])
 		return trimmed_data[0]
 	}
 	
@@ -288,7 +286,6 @@ func extractOSID(output string) string {
 		count++;
 	}
 	if trimmed_data[0] != "" {
-		fmt.Println(trimmed_data[0])
 		return trimmed_data[0]
 	}
 	
@@ -402,7 +399,6 @@ func extractDeviceTreeIdentifier(output string) string {
 		count++;
 	}
 	if trimmed_data[1] != "" {
-		fmt.Println(trimmed_data[1])
 		return trimmed_data[1]
 	}
 	
