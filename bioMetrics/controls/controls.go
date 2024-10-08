@@ -221,7 +221,7 @@ func extractBoardProduct(output string) string {
 	var count = 0
 	var trimmed_data []string
 	for _, line := range lines {
-		trimmed_line := strings.TrimSpace(line)     // removing the extra space before and after the data
+		trimmed_line := strings.TrimSpace(line)    
 		
 		if count == 1 {
 			data := strings.Fields(trimmed_line)
@@ -250,7 +250,7 @@ func extractSystemUUID(output string) string {
 	var count = 0
 	var trimmed_data []string
 	for _, line := range lines {
-		trimmed_line := strings.TrimSpace(line)     // removing the extra space before and after the data
+		trimmed_line := strings.TrimSpace(line)     
 		
 		if count == 1 {
 			data := strings.Fields(trimmed_line)
@@ -280,7 +280,7 @@ func extractOSID(output string) string {
 	var count = 0
 	var trimmed_data []string
 	for _, line := range lines {
-		trimmed_line := strings.TrimSpace(line)     // removing the extra space before and after the data
+		trimmed_line := strings.TrimSpace(line)     
 		
 		if count == 1 {
 			data := strings.Fields(trimmed_line)
@@ -310,7 +310,7 @@ func extractDiskVolumeSerilNo(output string) string {
 	var count = 0
 	var trimmed_data []string
 	for _, line := range lines {
-		trimmed_line := strings.TrimSpace(line)     // removing the extra space before and after the data
+		trimmed_line := strings.TrimSpace(line)     
 		
 		if count >= 1 {
 			data := strings.Fields(trimmed_line)
@@ -338,7 +338,7 @@ func extractBootROMVersion(output string) string {
 	var count = 0
 	var trimmed_data []string
 	for _, line := range lines {
-		trimmed_line := strings.TrimSpace(line)     // removing the extra space before and after the data
+		trimmed_line := strings.TrimSpace(line)     
 		
 		if count == 1 {
 			data := strings.Fields(trimmed_line)
@@ -366,7 +366,7 @@ func extractGPUVendorID(output string) string {
 	var count = 0
 	var trimmed_data []string
 	for _, line := range lines {
-		trimmed_line := strings.TrimSpace(line)     // removing the extra space before and after the data
+		trimmed_line := strings.TrimSpace(line)    
 		
 		if count == 1 {
 			data := strings.Fields(trimmed_line)
@@ -394,7 +394,7 @@ func extractDeviceTreeIdentifier(output string) string {
 	var count = 0
 	var trimmed_data []string
 	for _, line := range lines {
-		trimmed_line := strings.TrimSpace(line)     // removing the extra space before and after the data
+		trimmed_line := strings.TrimSpace(line)     
 		
 		if count == 1 {
 			data := strings.Fields(trimmed_line)
@@ -424,7 +424,7 @@ func extractUEFIFirmwareVersion(output string) string {
 	var count = 0
 	var trimmed_data []string
 	for _, line := range lines {
-		trimmed_line := strings.TrimSpace(line)     // removing the extra space before and after the data
+		trimmed_line := strings.TrimSpace(line)     
 
 		if count == 1 {
 			data := strings.Fields(trimmed_line)
