@@ -56,9 +56,7 @@ func getSysInfo(windowsCmd []string, formatStr func(string) string) string {
 
 // ********************* MAC ********************
 func GetMACAdd() string {
-	var output string
-
-	output = safeCommandOutput(executeCmd["MAC"][0], executeCmd["MAC"][1:]...)
+	var output = safeCommandOutput(executeCmd["MAC"][0], executeCmd["MAC"][1:]...)
 
 	lines := strings.Split(output, "\n") // splitting the raw output string into a slice of string based on spaces
 	parts := strings.Fields(lines[2])    // return type is a slice of string
@@ -67,7 +65,6 @@ func GetMACAdd() string {
 	}
 	return ""
 }
-// **********************************************
 
 // ***************** CPU SERIAL *****************
 func GetCPUSerial() string {
@@ -76,7 +73,6 @@ func GetCPUSerial() string {
 		formatStr,
 	)
 }
-// **********************************************
 
 // *********** HARD DRIVE SERIAL ****************
 func GetHardDriveSerial() string {
@@ -85,7 +81,6 @@ func GetHardDriveSerial() string {
 		formatStr,
 	)
 }
-// *********************************************
 
 // ********** MOTHER BOARD SERIAL **************
 func GetMotherBoardSerial() string {
@@ -94,7 +89,6 @@ func GetMotherBoardSerial() string {
 		formatStr,
 	)
 }
-// *********************************************
 
 // *********** BIOS Serial *********************
 func GetBIOSSerial() string {
@@ -103,7 +97,6 @@ func GetBIOSSerial() string {
 		formatStr,
 	)
 }
-// *********************************************
 
 // *********** SSD Serial **********************
 func GetSSDSerial() string {
@@ -112,7 +105,6 @@ func GetSSDSerial() string {
 		formatStr,
 	)
 }
-// *********************************************
 
 // *********** TPM Serial **********************
 func extractTPMSerial(output string) string {
@@ -140,7 +132,6 @@ func GetTPMChipID() string {
 		extractTPMSerial, 
 	)
 }
-// *********************************************
 
 // *********** GPU Serial **********************
 func extractGPUSerial(output string) string {
@@ -171,7 +162,6 @@ func GetGPUSerial() string {
 		extractGPUSerial,
 	)
 }
-// *********************************************
 
 // *********** RAM Serial **********************
 func extractRAMSerial(output string) string {
@@ -193,17 +183,16 @@ func GetRAMSerial() string {
 		extractRAMSerial,
 	)
 }
-// *********************************************
 
 // **************** NICID **********************
 func extractNICID(output string) string {
 	lines := strings.Split(output, "\n")
-
+	
 	var trimmed_data []string 
 	var count = 0
 	for _, line := range lines {
 		trimmed_lines := strings.TrimSpace(line)
-
+		
 		if count == 2 {
 			data := strings.Fields(trimmed_lines)
 			trimmed_data = append(trimmed_data, data...)
@@ -213,7 +202,7 @@ func extractNICID(output string) string {
 	if trimmed_data[3] != "" {
 		return trimmed_data[3]
 	}
-
+	
 	return ""
 }
 
@@ -224,6 +213,245 @@ func GetNICID() string {
 	)
 }
 
-// *********************************************
+// ******** BASE BOARD PRODUCT ID **************
+func extractBoardProduct(output string) string {
+	lines := strings.Split(output, "\n")
+	// var trimmed_data []string 
+	
+	var count = 0
+	var trimmed_data []string
+	for _, line := range lines {
+		trimmed_line := strings.TrimSpace(line)     // removing the extra space before and after the data
+		
+		if count == 1 {
+			data := strings.Fields(trimmed_line)
+			trimmed_data = append(trimmed_data, data...)
+		}
+		count++;
+	}
+	if trimmed_data[0] != "" {
+		return trimmed_data[0]
+	}
+	
+	return ""
+}
+
+func GetBaseBoardProduct() string {
+	return getSysInfo(
+		executeCmd["BaseboardProductID"],
+		extractBoardProduct,
+	)
+}
+
+// ************* SYSTEM UUID *******************
+func extractSystemUUID(output string) string {
+	lines := strings.Split(output, "\n")
+	
+	var count = 0
+	var trimmed_data []string
+	for _, line := range lines {
+		trimmed_line := strings.TrimSpace(line)     // removing the extra space before and after the data
+		
+		if count == 1 {
+			data := strings.Fields(trimmed_line)
+			trimmed_data = append(trimmed_data, data...)
+		}
+		count++;
+	}
+	if trimmed_data[0] != "" {
+		fmt.Println(trimmed_data[0])
+		return trimmed_data[0]
+	}
+	
+	return ""
+}
+
+func GetSystemUUID() string {
+	return getSysInfo(
+		executeCmd["SystemUUID"],
+		extractSystemUUID,
+	)
+}
+
+// ********** OS INSTALLATION ID ***************
+func extractOSID(output string) string {
+	lines := strings.Split(output, "\n")
+	
+	var count = 0
+	var trimmed_data []string
+	for _, line := range lines {
+		trimmed_line := strings.TrimSpace(line)     // removing the extra space before and after the data
+		
+		if count == 1 {
+			data := strings.Fields(trimmed_line)
+			trimmed_data = append(trimmed_data, data...)
+		}
+		count++;
+	}
+	if trimmed_data[0] != "" {
+		fmt.Println(trimmed_data[0])
+		return trimmed_data[0]
+	}
+	
+	return ""
+}
+
+func GetOSIntsllationID() string {
+	return getSysInfo(
+		executeCmd["OSInstallationID"],
+		extractOSID,
+	)
+}
+
+// ****** DISK VOLUME SERIAL NUMBER ************
+func extractDiskVolumeSerilNo(output string) string {
+	lines := strings.Split(output, "\n")
+	
+	var count = 0
+	var trimmed_data []string
+	for _, line := range lines {
+		trimmed_line := strings.TrimSpace(line)     // removing the extra space before and after the data
+		
+		if count >= 1 {
+			data := strings.Fields(trimmed_line)
+			trimmed_data = append(trimmed_data, data...)
+		}
+		count++;
+	}
+	if trimmed_data[0] != "" {
+		return trimmed_data[0] + trimmed_data[1] + trimmed_data[2]
+	}
+	return ""
+}
+
+func GetDiskVolumeSerialNo() string {
+	return getSysInfo(
+		executeCmd["DiskVolumeSerialNumber"],
+		extractDiskVolumeSerilNo,
+	)
+}
+
+// ************* BIOS VERSION ******************
+func extractBootROMVersion(output string) string {
+	lines := strings.Split(output, "\n")
+	
+	var count = 0
+	var trimmed_data []string
+	for _, line := range lines {
+		trimmed_line := strings.TrimSpace(line)     // removing the extra space before and after the data
+		
+		if count == 1 {
+			data := strings.Fields(trimmed_line)
+			trimmed_data = append(trimmed_data, data...)
+		}
+		count++;
+	}
+	if trimmed_data[2] != "" {
+		return trimmed_data[2]
+	}
+	return ""
+}
+
+func GetBootROMVersion() string {
+	return getSysInfo(
+		executeCmd["BootROMVersion"],
+		extractBootROMVersion,
+	)
+}
+
+// ************* GPU VENDOR ID ******************
+func extractGPUVendorID(output string) string {
+	lines := strings.Split(output, "\n")
+	
+	var count = 0
+	var trimmed_data []string
+	for _, line := range lines {
+		trimmed_line := strings.TrimSpace(line)     // removing the extra space before and after the data
+		
+		if count == 1 {
+			data := strings.Fields(trimmed_line)
+			trimmed_data = append(trimmed_data, data...)
+		}
+		count++;
+	}
+	if trimmed_data[0] != "" {
+		return trimmed_data[0]
+	}
+	return ""
+}
+
+func GetGPUVendorID() string {
+	return getSysInfo(
+		executeCmd["GPUVendorID"],
+		extractGPUVendorID,
+	)
+}
+
+// ******** DEVICE TREE IDENTIFIER **************
+func extractDeviceTreeIdentifier(output string) string {
+	lines := strings.Split(output, "\n")
+	
+	var count = 0
+	var trimmed_data []string
+	for _, line := range lines {
+		trimmed_line := strings.TrimSpace(line)     // removing the extra space before and after the data
+		
+		if count == 1 {
+			data := strings.Fields(trimmed_line)
+			trimmed_data = append(trimmed_data, data...)
+		}
+		count++;
+	}
+	if trimmed_data[1] != "" {
+		fmt.Println(trimmed_data[1])
+		return trimmed_data[1]
+	}
+	
+	return ""
+}
+
+func GetDeviceTreeIdentifier() string {
+	return getSysInfo(
+		executeCmd["DeviceTreeIdentifier"],
+		extractDeviceTreeIdentifier,
+	)
+}
+
+// ******** UEFI FIRMWARE VERSION ***************
+func extractUEFIFirmwareVersion(output string) string {
+	lines := strings.Split(output, "\n")
+
+	var count = 0
+	var trimmed_data []string
+	for _, line := range lines {
+		trimmed_line := strings.TrimSpace(line)     // removing the extra space before and after the data
+
+		if count == 1 {
+			data := strings.Fields(trimmed_line)
+			trimmed_data = append(trimmed_data, data...)
+		}
+		count++;
+	}
+	if trimmed_data[0] != "" {
+		return trimmed_data[0]
+	}
+
+	return ""
+}
+
+func GetUEFIFirmwareVersion() string {
+	return getSysInfo(
+		executeCmd["UEFIFirmwareVersion"],
+		extractUEFIFirmwareVersion,
+	)
+}
+
+
+
+
+
+
+
+
 
 
