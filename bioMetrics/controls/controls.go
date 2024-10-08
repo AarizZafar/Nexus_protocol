@@ -150,7 +150,6 @@ func extractGPUSerial(output string) string {
 	}
 
 	if trimmed_data[0] != "" {
-		fmt.Println("--------------", trimmed_data[0])
 		return trimmed_data[0]
 	}
 	return ""
@@ -329,9 +328,9 @@ func GetDiskVolumeSerialNo() string {
 		executeCmd["DiskVolumeSerialNumber"],
 		extractDiskVolumeSerilNo,
 	)
-}
+} 
 
-// ************* BIOS VERSION ******************
+// ************* BOOT ROM VERSION **************
 func extractBootROMVersion(output string) string {
 	lines := strings.Split(output, "\n")
 	

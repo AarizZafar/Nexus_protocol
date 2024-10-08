@@ -15,7 +15,6 @@ var Linux = map[string][]string{
 	"SystemUUID":             {"dmidecode", "-s", "system-uuid"},
 	"OSInstallationID":       {"cat", "/var/lib/dbus/machine-id"},
 	"DiskVolumeSerialNumber": {"lsblk", "-o", "UUID"},
-	"SystemFirmwareVersion":  {"dmidecode", "-s", "bios-version"},
 	"BootROMVersion":         {"dmidecode", "-s", "bios-version"},
 	"GPUVendorID":            {"lspci", "-nn", "|", "grep", "VGA"},
 	"DeviceTreeIdentifier":   {"cat", "/proc/device-tree/model"}, // (Linux ARM-based only)
@@ -37,7 +36,6 @@ var Darwin = map[string][]string{
 	"SystemUUID":             {"ioreg", "-l", "|", "grep", "IOPlatformUUID"},
 	"OSInstallationID":       {"ioreg", "-l", "|", "grep", "IOPlatformUUID"},
 	"DiskVolumeSerialNumber": {"diskutil", "info", "/"},
-	"SystemFirmwareVersion":  {"system_profiler", "SPHardwareDataType"},
 	"BootROMVersion":         {"system_profiler", "SPHardwareDataType"},
 	"GPUVendorID":            {"system_profiler", "SPDisplaysDataType"},
 	"DeviceTreeIdentifier":   {"ioreg", "-l", "|", "grep", "device-tree"},

@@ -15,7 +15,6 @@ type SysBioMetrix struct {
 	SystemUUID             string
 	OSInstallationID       string
 	DiskVolumeSerialNumber string
-	BIOSVersion            string
 	BootROMVersion         string
 	GPUVendorID            string
 	DeviceTreeIdentifier   string
