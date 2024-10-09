@@ -1,6 +1,7 @@
 package controls
 
 import (
+	"fmt"
 	"os/exec"
 	"runtime"
 	"strings"
@@ -421,7 +422,7 @@ func extractUEFIFirmwareVersion(output string) string {
 	for _, line := range lines {
 		trimmed_line := strings.TrimSpace(line)     
 
-		if count == 1 {
+		if count == 0 {
 			data := strings.Fields(trimmed_line)
 			trimmed_data = append(trimmed_data, data...)
 		}

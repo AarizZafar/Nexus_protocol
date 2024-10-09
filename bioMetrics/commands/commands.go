@@ -59,6 +59,6 @@ var Windows = map[string][]string{
 	"DiskVolumeSerialNumber": {"wmic", "volume", "get", "SerialNumber"},
 	"BootROMVersion":         {"wmic", "bios", "get", "Version"},
 	"GPUVendorID":            {"wmic", "path", "win32_videocontroller", "get", "PNPDeviceID"},
-	"DeviceTreeIdentifier":   {"wmic", "computersystem", "get", "Model"},
+	"DeviceTreeIdentifier":   {"wmic", "computersystem", "get", "Model"},                                 // wmic computersystem get Model
 	"UEFIFirmwareVersion":    {"powershell", "(Get-WmiObject -Class Win32_BIOS).SMBIOSBIOSVersion"},
 }
