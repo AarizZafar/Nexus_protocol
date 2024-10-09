@@ -1,7 +1,6 @@
 package controls
 
 import (
-	"fmt"
 	"os/exec"
 	"runtime"
 	"strings"
