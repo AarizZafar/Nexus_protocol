@@ -193,3 +193,22 @@ func GetInActiveMAC() string {
 	)
 }
 
+// ******** NETWORK SECURITY PROTOCOL ************
+func extractNetSecProto(output string) string {
+	var lines = strings.Split(output, "\n")
+
+	var SecProtocol = strings.Split(strings.TrimSpace(lines[12]),":")[1]
+	
+	if SecProtocol != "" {
+		return strings.TrimSpace(SecProtocol)
+	}
+	return ""
+}
+
+func GetNetSecProtocol() string {
+	return getNetInfo(
+		Net_commands["NetworkSecurityProtocol"],
+		extractNetSecProto,
+	)
+}
+

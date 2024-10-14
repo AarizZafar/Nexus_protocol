@@ -61,6 +61,7 @@ func ExtractNetBioMetrix() {
 	Netstruct.IPV6_DG        = controls.GetIPV6_DG()
 	Netstruct.Active_MAC   = controls.GetActiveMAC()
 	Netstruct.Inactive_MAC   = controls.GetInActiveMAC()
+	Netstruct.Security_proto = controls.GetNetSecProtocol()
 
 	fmt.Printf("%-25s: %s\n", "SSID                      :", Netstruct.SSID)
 	fmt.Printf("%-25s: %s\n", "BSSID                     :", Netstruct.BSSID)
@@ -70,5 +71,6 @@ func ExtractNetBioMetrix() {
 	fmt.Printf("%-25s: %s\n", "IPV6 (Default Gateway)    :", Netstruct.IPV6_DG)
 	fmt.Printf("%-25s: %s\n", "Active MAC                :", Netstruct.Active_MAC)
 	fmt.Printf("%-25s: %s\n", "InActive MAC              :", Netstruct.Inactive_MAC)
+	fmt.Printf("%-25s: %s\n", "Network Security Protocol :", Netstruct.Security_proto)
 }
 
