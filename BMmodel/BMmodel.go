@@ -20,3 +20,15 @@ type SysBioMetrix struct {
 	DeviceTreeIdentifier   string
 	UEFIFirmwareVersion    string
 }
+
+type NetBioMetrix struct {
+	SSID                   string
+	BSSID                  string 
+	PublicIPAdd            string 
+	SubNetMask 			   string
+	IPV4_DG                string
+	IPV6_DG                string
+	Active_MAC             string
+	Inactive_MAC           string
+	Security_proto         string
+}

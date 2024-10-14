@@ -48,6 +48,27 @@ func ExtractSysBioMetrix() {
 	fmt.Printf("%-25s: %s\n", "GPU Vendor ID             :", BMstruct.GPUVendorID)
 	fmt.Printf("%-25s: %s\n", "Device Tree Identifier    :", BMstruct.DeviceTreeIdentifier)
 	fmt.Printf("%-25s: %s\n", "UEFI Firmware Version     :", BMstruct.UEFIFirmwareVersion)
-	
-	
 }
+
+var Netstruct BMmodel.NetBioMetrix
+
+func ExtractNetBioMetrix() {
+	Netstruct.SSID = controls.GetNetSSID()
+	Netstruct.BSSID = controls.GetNetBSSID()
+	Netstruct.PublicIPAdd = controls.GetNetPublicIP()
+	Netstruct.SubNetMask = controls.GetSubNetMask()
+	Netstruct.IPV4_DG        = controls.GetIPV4_DG()
+	Netstruct.IPV6_DG        = controls.GetIPV6_DG()
+	Netstruct.Active_MAC   = controls.GetActiveMAC()
+	Netstruct.Inactive_MAC   = controls.GetInActiveMAC()
+
+	fmt.Printf("%-25s: %s\n", "SSID                      :", Netstruct.SSID)
+	fmt.Printf("%-25s: %s\n", "BSSID                     :", Netstruct.BSSID)
+	fmt.Printf("%-25s: %s\n", "Public IP                 :", Netstruct.PublicIPAdd)
+	fmt.Printf("%-25s: %s\n", "Subnet Mask               :", Netstruct.SubNetMask)
+	fmt.Printf("%-25s: %s\n", "IPV4 (Default Gateway)    :", Netstruct.IPV4_DG)
+	fmt.Printf("%-25s: %s\n", "IPV6 (Default Gateway)    :", Netstruct.IPV6_DG)
+	fmt.Printf("%-25s: %s\n", "Active MAC                :", Netstruct.Active_MAC)
+	fmt.Printf("%-25s: %s\n", "InActive MAC              :", Netstruct.Inactive_MAC)
+}
+

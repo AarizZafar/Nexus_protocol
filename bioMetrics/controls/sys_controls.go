@@ -44,9 +44,9 @@ func formatStr(output string) string {
 	return ""
 }
 
-func getSysInfo(windowsCmd []string, formatStr func(string) string) string {
+func getSysInfo(command []string, formatStr func(string) string) string {
 	var output string
-	output = safeCommandOutput(windowsCmd[0], windowsCmd[1:]...)
+	output = safeCommandOutput(command[0], command[1:]...)
 	if formatStr != nil {
 		output = formatStr(output)
 	}
