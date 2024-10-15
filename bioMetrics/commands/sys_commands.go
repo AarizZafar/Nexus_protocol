@@ -1,6 +1,7 @@
 package commands
 
 var Linux = map[string][]string{
+	"SSID":                   {"nmcli", "-t", "-f", "active,ssid", "dev", "wifi", "|", "grep", "'^yes'", "|", "cut", "-d':'", "-f2"},
 	"MAC":                    {"ifconfig"},
 	"CPUSerial":              {"cat", "/proc/cpuinfo"},                       // cat /proc/cpuinfo
 	"HardDriveSerial":        {"lsblk", "-d", "-o", "SERIAL"},                // lsblk -d -o SERIAL
@@ -22,6 +23,7 @@ var Linux = map[string][]string{
 }
 
 var Darwin = map[string][]string{
+	"SSID":                    {"/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport", "-I", "|", "grep", "' SSID'"},
 	"MAC":                    {"ifconfig"},
 	"CPUSerial":              {"systemctl", "-n", "machdep.cpu.serial_number"},
 	"HardDriveSerial":        {"diskutil", "info", "/"},
@@ -43,6 +45,7 @@ var Darwin = map[string][]string{
 }
 
 var Windows = map[string][]string{
+	"SSID":                   {"netsh", "wlan", "show", "interfaces"},
 	"MAC":                    {"getmac"},
 	"CPUSerial":              {"wmic", "cpu", "get", "ProcessorId"},                                     // wmic cpu get ProcessorId
 	"HardDriveSerial":        {"wmic", "diskdrive", "get", "SerialNumber"},                              // wmic diskdrive get SerialNumber
@@ -59,6 +62,6 @@ var Windows = map[string][]string{
 	"DiskVolumeSerialNumber": {"wmic", "volume", "get", "SerialNumber"},
 	"BootROMVersion":         {"wmic", "bios", "get", "Version"},
 	"GPUVendorID":            {"wmic", "path", "win32_videocontroller", "get", "PNPDeviceID"},
-	"DeviceTreeIdentifier":   {"wmic", "computersystem", "get", "Model"},                                 // wmic computersystem get Model
+	"DeviceTreeIdentifier":   {"wmic", "computersystem", "get", "Model"}, // wmic computersystem get Model
 	"UEFIFirmwareVersion":    {"powershell", "(Get-WmiObject -Class Win32_BIOS).SMBIOSBIOSVersion"},
 }

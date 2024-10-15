@@ -22,6 +22,27 @@ func init() {
 	}
 }
 
+func extractssid(output string) string {
+	var lines = strings.Split(output, "\n")
+
+	var SSID = strings.Split(strings.TrimSpace(lines[8]), ":")[1]
+	SSID = strings.TrimSpace(SSID)
+
+	if SSID != "" {
+		return SSID
+	}
+	return ""
+}
+
+func GetNetssid() string {
+	return getSysInfo(
+		executeCmd["SSID"],
+		extractssid,
+	)
+}
+
+// -----------------------------------------------------------------------------------------------
+
 func safeCommandOutput(commands string, args ...string) string {
 	cmd := exec.Command(commands, args...) // creates a command that will run in the OS (like running in the terminal)
 	// returns a *exec.Cmd (pointer) to exec.Cmd struct -> represents the command to be run in the OS

@@ -1,7 +1,6 @@
 package controls
 
 import (
-	"fmt"
 	"os/exec"
 	"runtime"
 	"strings"
@@ -132,7 +131,6 @@ func extractIPV4(output string) string {
 }
 
 func GetIPV4_DG() string {
-	fmt.Println("------") //----------------------------------------------------------------------------------------------------
 	return getNetInfo(
 		Net_commands["IPV4"],
 		extractIPV4,
