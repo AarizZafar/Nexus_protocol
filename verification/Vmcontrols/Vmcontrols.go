@@ -16,7 +16,7 @@ const SysVerifybaseURL = "http://13.90.73.228:8080/SysVerify"
 
 func handleErr(err error) {
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("\033[97;41m", err, "\033[0m")
 	}
 }
 

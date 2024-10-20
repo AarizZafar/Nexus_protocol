@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"net/http"
 	"github.com/gin-gonic/gin"
 
@@ -13,7 +12,6 @@ import (
 var netCred = netCredentials.NetCred()
 
 func LoginPage(ctx *gin.Context) {
-	fmt.Println("------------------------------------------------")
 	ctx.HTML(http.StatusOK, "login_page.html",nil)
 }
 
@@ -24,15 +22,8 @@ func NetAuthentication(ctx *gin.Context) {
 	passWd, exists := netCred[netName]
 
 	if exists && netPass == passWd {
-		fmt.Println("CORRECT CREDENTIALS ")
-		fmt.Println("netName : ", netName)
-		fmt.Println("netPass : ", netPass)
-
 		ctx.HTML(http.StatusOK, "success.html", nil)
 	} else {
-		fmt.Println("WRONG CREDENTIALS ")
-		fmt.Println("netName : ", netName)
-		fmt.Println("netPass : Does not exist")
 		ctx.HTML(http.StatusUnauthorized, "failure.html",nil)
     }
 }
@@ -42,4 +33,3 @@ func GetSysBioMetrix(c *gin.Context) {
 	BMmodel := bioMetrics.BMstruct
 	c.JSON(http.StatusOK,BMmodel)
 }
-

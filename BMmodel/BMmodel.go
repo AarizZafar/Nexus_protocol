@@ -11,6 +11,7 @@ type NetBioMetrix struct {
 	Inactive_MAC           string
 	Security_proto         string
 }
+
 type SysBioMetrix struct {
 	SSID                   string
 	MAC                    string
@@ -32,4 +33,3 @@ type SysBioMetrix struct {
 	DeviceTreeIdentifier   string
 	UEFIFirmwareVersion    string
 }
-

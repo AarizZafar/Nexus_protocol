@@ -23,8 +23,7 @@ func init() {
 }
 
 func safeNetCommandOutput(command string, args ...string) string {
-	// fmt.Println(command , "", args)
-	cmd := exec.Command(command, args...)   // cannot take sheel features like the |(pipe)
+	cmd := exec.Command(command, args...)   // cannot take shell features like the |(pipe)
 	output, err := cmd.Output()
 	if err != nil {
 		return ""
@@ -34,7 +33,6 @@ func safeNetCommandOutput(command string, args ...string) string {
 
 func getNetInfo(command []string, formatStr func(string) string) string {
 	var output string
-	// fmt.Println(command[1:])
 	output = safeNetCommandOutput(command[0], command[1:]...)
 	if formatStr != nil {
 		output = formatStr(output)
@@ -209,4 +207,3 @@ func GetNetSecProtocol() string {
 		extractNetSecProto,
 	)
 }
-

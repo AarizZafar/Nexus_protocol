@@ -23,7 +23,7 @@ var Linux = map[string][]string{
 }
 
 var Darwin = map[string][]string{
-	"SSID":                    {"/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport", "-I", "|", "grep", "' SSID'"},
+	"SSID":                   {"/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport", "-I", "|", "grep", "' SSID'"},
 	"MAC":                    {"ifconfig"},
 	"CPUSerial":              {"systemctl", "-n", "machdep.cpu.serial_number"},
 	"HardDriveSerial":        {"diskutil", "info", "/"},

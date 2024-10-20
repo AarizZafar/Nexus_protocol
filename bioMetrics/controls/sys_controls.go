@@ -221,7 +221,6 @@ func extractNICID(output string) string {
 	if trimmed_data[3] != "" {
 		return trimmed_data[3]
 	}
-	
 	return ""
 }
 
@@ -251,7 +250,6 @@ func extractBoardProduct(output string) string {
 	if trimmed_data[0] != "" {
 		return trimmed_data[0]
 	}
-	
 	return ""
 }
 
@@ -280,7 +278,6 @@ func extractSystemUUID(output string) string {
 	if trimmed_data[0] != "" {
 		return trimmed_data[0]
 	}
-	
 	return ""
 }
 
@@ -422,7 +419,6 @@ func extractDeviceTreeIdentifier(output string) string {
 	if trimmed_data[1] != "" {
 		return trimmed_data[1]
 	}
-	
 	return ""
 }
 
@@ -451,7 +447,6 @@ func extractUEFIFirmwareVersion(output string) string {
 	if trimmed_data[0] != "" {
 		return trimmed_data[0]
 	}
-
 	return ""
 }
 
@@ -461,13 +456,3 @@ func GetUEFIFirmwareVersion() string {
 		extractUEFIFirmwareVersion,
 	)
 }
-
-
-
-
-
-
-
-
-
-
