@@ -1,14 +1,16 @@
 package controllers
 
 import (
+	"fmt"
 	"net/http"
+
 	"github.com/gin-gonic/gin"
 
 	"github.com/AarizZafar/Nexus_protocol.git/bioMetrics"
 	"github.com/AarizZafar/Nexus_protocol.git/netCredentials"
+	"github.com/AarizZafar/Nexus_protocol.git/verification/Vmcontrols"
 )
 
-// the netCred variabel starts with a lower case hence it is private
 var netCred = netCredentials.NetCred()
 
 func LoginPage(ctx *gin.Context) {
@@ -20,6 +22,10 @@ func NetAuthentication(ctx *gin.Context) {
 	netPass := ctx.PostForm("Password")
 
 	passWd, exists := netCred[netName]
+
+	// var ssid = Vmcontrols.GetAllRecInNetDB()
+	var adminCred = Vmcontrols.GetAdminCreds()
+	fmt.Println(adminCred)
 
 	if exists && netPass == passWd {
 		ctx.HTML(http.StatusOK, "success.html", nil)
