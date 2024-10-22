@@ -24,7 +24,6 @@ var Net_darwin = map[string][]string{
 var Net_Windows = map[string][]string{
 	"SSID":                         {"netsh", "wlan", "show", "interfaces"},
 	"BSSID":                        {"netsh", "wlan", "show", "interfaces"},  // Access Point MAC
-	"PublicIPAddress":              {"curl", "ifconfig.me"},
 	"SubnetMask":                   {"ipconfig"},
 	"IPV4":                         {"ipconfig"},
 	"IPV6":                         {"ipconfig"},

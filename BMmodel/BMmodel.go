@@ -3,7 +3,6 @@ package BMmodel
 type NetBioMetrix struct {
 	SSID                   string
 	BSSID                  string 
-	PublicIPAdd            string 
 	SubNetMask 			   string
 	IPV4_DG                string
 	IPV6_DG                string

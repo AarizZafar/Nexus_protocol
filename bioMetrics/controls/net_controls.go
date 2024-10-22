@@ -79,24 +79,6 @@ func GetNetBSSID() string {
 		extractBSSID,
 	)
 }
-
-// **************** PUBLIC IP ADD ****************
-func extractPublicIP(output string) string {
-	var lines = strings.Split(output, "\n")
-	var PublicIP = lines[0]
-	
-	if PublicIP != "" {
-		return PublicIP
-	}
-	return ""
-}
-
-func GetNetPublicIP() string {
-	return getNetInfo(
-		Net_commands["PublicIPAddress"],
-		extractPublicIP,
-		) 
-	}
 	
 // ***************** SUBNET MAKS *****************
 func extractSubnetMask(output string) string {
@@ -175,7 +157,7 @@ func GetActiveMAC() string {
 func extractInActiveMac(output string) string {
 	var lines = strings.Split(output, "\n")
 	
-	var inactiveMac = strings.Split(strings.TrimSpace(lines[3]), " ")
+	var inactiveMac = strings.Split(strings.TrimSpace(lines[2]), " ")
 	if inactiveMac[0] != "" {
 		return inactiveMac[0]
 	}

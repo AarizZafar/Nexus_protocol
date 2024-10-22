@@ -57,7 +57,6 @@ var NBMstruct BMmodel.NetBioMetrix
 func ExtractNetBioMetrix() {
 	NBMstruct.SSID 										= controls.GetNetSSID()
 	NBMstruct.BSSID 									= controls.GetNetBSSID()
-	NBMstruct.PublicIPAdd 								= controls.GetNetPublicIP()
 	NBMstruct.SubNetMask 								= controls.GetSubNetMask()
 	NBMstruct.IPV4_DG        							= controls.GetIPV4_DG()
 	NBMstruct.IPV6_DG        							= controls.GetIPV6_DG()
@@ -67,7 +66,6 @@ func ExtractNetBioMetrix() {
 
 	fmt.Printf("%-25s: %s\n", "SSID                      :", NBMstruct.SSID)
 	fmt.Printf("%-25s: %s\n", "BSSID                     :", NBMstruct.BSSID)
-	fmt.Printf("%-25s: %s\n", "Public IP                 :", NBMstruct.PublicIPAdd)
 	fmt.Printf("%-25s: %s\n", "Subnet Mask               :", NBMstruct.SubNetMask)
 	fmt.Printf("%-25s: %s\n", "IPV4 (Default Gateway)    :", NBMstruct.IPV4_DG)
 	fmt.Printf("%-25s: %s\n", "IPV6 (Default Gateway)    :", NBMstruct.IPV6_DG)
