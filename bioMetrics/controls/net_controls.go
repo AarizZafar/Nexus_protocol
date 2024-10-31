@@ -79,8 +79,35 @@ func GetNetBSSID() string {
 		extractBSSID,
 	)
 }
-	
-// ***************** SUBNET MAKS *****************
+
+// *************** NET INTERFACE MAC *************
+func extractNetInterfaceMAC(output string) string {
+	lines := strings.Split(output, "\n")
+	var trimmed_data []string
+
+	for _, line := range lines {
+		trimmed_line := strings.TrimSpace(line)
+		data := strings.Fields(trimmed_line)
+
+		trimmed_data = append(trimmed_data, data...)
+	}
+
+	if trimmed_data[6] != "" {
+		return trimmed_data[6]
+	}
+
+	return ""
+
+}
+
+func GetNetInterfaceMac() string {
+	return getNetInfo(
+		Net_commands["NetworkInterfaceMAC"],
+		extractNetInterfaceMAC,
+	)
+}
+
+// ***************** SUBNET MAKSK *****************
 func extractSubnetMask(output string) string {
 	var lines = strings.Split(output, "\n")
 	
@@ -96,96 +123,5 @@ func GetSubNetMask() string {
 	return getNetInfo(
 		Net_commands["SubnetMask"],
 		extractSubnetMask,
-	)
-}
-
-// ******************** IPV4 *********************
-func extractIPV4(output string) string {
-	var lines = strings.Split(output, "\n")
-	
-	var IPV4 = strings.SplitN(strings.TrimSpace(lines[21]), ":", 2)[1]
-	if IPV4 != "" {
-		return strings.TrimSpace(IPV4)
-	}
-	return ""
-}
-
-func GetIPV4_DG() string {
-	return getNetInfo(
-		Net_commands["IPV4"],
-		extractIPV4,
-	)
-}
-
-// ******************** IPV6 *********************
-func extractIPV6(output string) string{
-	var lines = strings.Split(output, "\n")
-	
-	var IPV6 = strings.TrimSpace(lines[22])
-	if IPV6 != "" {
-		return IPV6
-	}
-	return  ""
-}
-
-func GetIPV6_DG() string {
-	return getNetInfo(
-		Net_commands["IPV6"],
-		extractIPV6,
-	)
-}
-
-// ***************** ACTIVE MAC ******************
-func extractActiveMac(output string) string{
-	var lines = strings.Split(output, "\n")
-	
-	var activeMac = strings.Split(strings.TrimSpace(lines[2]), " ")
-	if activeMac[0] != "" {
-		return activeMac[0]
-	}
-	return ""
-}
-
-func GetActiveMAC() string {
-	return getNetInfo(
-		Net_commands["Active_NetworkInterfaceMAC"],
-		extractActiveMac,
-	)
-}
-
-// *************** INACTIVE MAC ******************
-func extractInActiveMac(output string) string {
-	var lines = strings.Split(output, "\n")
-	
-	var inactiveMac = strings.Split(strings.TrimSpace(lines[2]), " ")
-	if inactiveMac[0] != "" {
-		return inactiveMac[0]
-	}
-	return ""
-}
-
-func GetInActiveMAC() string {
-	return getNetInfo(
-		Net_commands["Inactive_NetworkInterfaceMAC"],
-		extractInActiveMac,
-	)
-}
-
-// ******** NETWORK SECURITY PROTOCOL ************
-func extractNetSecProto(output string) string {
-	var lines = strings.Split(output, "\n")
-
-	var SecProtocol = strings.Split(strings.TrimSpace(lines[12]),":")[1]
-	
-	if SecProtocol != "" {
-		return strings.TrimSpace(SecProtocol)
-	}
-	return ""
-}
-
-func GetNetSecProtocol() string {
-	return getNetInfo(
-		Net_commands["NetworkSecurityProtocol"],
-		extractNetSecProto,
 	)
 }

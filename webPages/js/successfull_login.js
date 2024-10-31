@@ -32,24 +32,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="biometrics-list">
                     <h2>System Biometrics</h2>
                     <ul>
-                        <li><strong>MAC                           </strong> <span class="fixed-space">   </span>: ${data.MAC}                   </li>
-                        <li><strong>CPU Serial                    </strong> <span class="fixed-space">   </span>: ${data.CPUSerial}             </li>
-                        <li><strong>Hard Drive Serial             </strong> <span class="fixed-space">   </span>: ${data.HardDriveSerial}       </li>
-                        <li><strong>Mother Board Serial           </strong> <span class="fixed-space">   </span>: ${data.MotherBoardSerial}     </li>
-                        <li><strong>BIOS Serial                   </strong> <span class="fixed-space">   </span>: ${data.BIOSSerial}            </li>
-                        <li><strong>SSD Serial                    </strong> <span class="fixed-space">   </span>: ${data.SSDSerial}             </li>
-                        <li><strong>TPM chip ID                   </strong> <span class="fixed-space">   </span>: ${data.TPMChipID}             </li>
-                        <li><strong>RAM Serial                    </strong> <span class="fixed-space">   </span>: ${data.RAMSerial}             </li>
-                        <li><strong>GPU Serial                    </strong> <span class="fixed-space">   </span>: ${data.GPUSerial}             </li>
-                        <li><strong>NIC ID                        </strong> <span class="fixed-space">   </span>: ${data.NICID}                 </li>
-                        <li><strong>Base Board Product            </strong> <span class="fixed-space">   </span>: ${data.BaseBoardProduct}      </li>
-                        <li><strong>System UUID                   </strong> <span class="fixed-space">   </span>: ${data.SystemUUID}            </li>
-                        <li><strong>OSInstallationID              </strong> <span class="fixed-space">   </span>: ${data.OSInstallationID}      </li>
-                        <li><strong>Disk Volume Serial Number     </strong> <span class="fixed-space">   </span>: ${data.DiskVolumeSerialNumber}</li>
-                        <li><strong>Boot ROM Version              </strong> <span class="fixed-space">   </span>: ${data.BootROMVersion}        </li>
-                        <li><strong>Boot GPU VendorID             </strong> <span class="fixed-space">   </span>: ${data.GPUVendorID}           </li>
-                        <li><strong>Device Tree Identifier        </strong> <span class="fixed-space">   </span>: ${data.DeviceTreeIdentifier}  </li>
-                        <li><strong>UEFI Firmware Version         </strong> <span class="fixed-space">   </span>: ${data.UEFIFirmwareVersion}   </li>
+                        <li><strong>SSID                          </strong> <span class="fixed-space">   </span>: ${data.SSID}                      </li>
+                        <li><strong>MAC                           </strong> <span class="fixed-space">   </span>: ${data.MAC}                       </li>
+                        <li><strong>SystemSerialNumber            </strong> <span class="fixed-space">   </span>: ${data.SystemSerialNumber}        </li>
+                        <li><strong>UUID                          </strong> <span class="fixed-space">   </span>: ${data.UUID}                      </li>
                     </ul>
                 </div>
                 `;

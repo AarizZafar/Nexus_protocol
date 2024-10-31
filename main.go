@@ -5,7 +5,7 @@ import (
 
 	"github.com/AarizZafar/Nexus_protocol.git/bioMetrics"
 	"github.com/AarizZafar/Nexus_protocol.git/router"
-	"github.com/AarizZafar/Nexus_protocol.git/verification"
+	// "github.com/AarizZafar/Nexus_protocol.git/verification"
 )
 
 func main() {
@@ -24,8 +24,8 @@ func main() {
 	bioMetrics.ExtractSysBioMetrix()
 	fmt.Println("\033[97;42m     SYSTEM BIOMETRICS EXTRACTION PROCESS DONE ✔     \033[0m\n")
 
-	fmt.Println("\033[97;46m           VERIFICATION PROCESS HAS STARTED          \033[0m")
-	verification.StartVerification()
+	// fmt.Println("\033[97;46m           VERIFICATION PROCESS HAS STARTED          \033[0m")
+	// verification.StartVerification()
 
 	router.Run(port)
 }
