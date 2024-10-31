@@ -6,7 +6,7 @@ import (
 )
 
 func Router() *gin.Engine {
-    gin.SetMode(gin.ReleaseMode)       // to prevent unecessry output to be shown on the terminal
+    gin.SetMode(gin.ReleaseMode)                                // to prevent unecessry output to be shown on the terminal
 	router := gin.Default()
 
 	router.LoadHTMLGlob("webPages/html/*")                      // Load all the html files from here
@@ -17,11 +17,9 @@ func Router() *gin.Engine {
 	router.Static("webPages/css", "./webPages/css")             
     router.Static("webPages/js", "./webPages/js/")   
 
-	// GET used to display -> web page, when we load a login page the browser will send a get request to server
-	router.GET("/",          controllers.LoginPage)             
+	router.GET("/",          controllers.LoginPage)              // GET used to display -> web page, when we load a login page the browser will send a get request to server
     
-	// Post used to send data from (browser) to like netName, netPass          
-	router.POST("/login",    controllers.NetAuthentication)      
+	router.POST("/login",    controllers.NetAuthentication)      // Post used to send data from (browser) to like netName, netPass  
 
     router.GET("/getSysBioMetx", controllers.GetSysBioMetrix)
 

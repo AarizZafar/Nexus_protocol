@@ -43,9 +43,9 @@ func GetNetssid() string {
 }
 
 func safeCommandOutput(commands string, args ...string) string {
-	cmd := exec.Command(commands, args...) // creates a command that will run in the OS (like running in the terminal)
-	// returns a *exec.Cmd (pointer) to exec.Cmd struct -> represents the command to be run in the OS
-	output, err := cmd.Output() // returns -> []byte - result of the command, error
+	cmd := exec.Command(commands, args...) 	// creates a command that will run in the OS (like running in the terminal)
+											// returns a *exec.Cmd (pointer) to exec.Cmd struct -> represents the command to be run in the OS
+	output, err := cmd.Output() 			// returns -> []byte - result of the command, error
 	if err != nil {
 		fmt.Printf("Error executing command: %v\n", err)
 		return ""

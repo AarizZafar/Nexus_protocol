@@ -6,8 +6,6 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"github.com/AarizZafar/Nexus_protocol.git/bioMetrics"
-	// "github.com/AarizZafar/Nexus_protocol.git/controls"
-	// "github.com/AarizZafar/Nexus_protocol.git/verification"
 	"github.com/AarizZafar/Nexus_protocol.git/verification/Vmcontrols"
 )
 
@@ -61,7 +59,6 @@ func NetAuthentication(ctx *gin.Context) {
 }
 
 func GetSysBioMetrix(c *gin.Context) {
-	// The BMstruct that we had declared in the bioMetrix file 
 	BMmodel := bioMetrics.BMstruct
 	c.JSON(http.StatusOK,BMmodel)
 }
