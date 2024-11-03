@@ -35,6 +35,7 @@ func NetAuthentication(ctx *gin.Context) {
 	for _, testNet := range testNets {
 		if testNet == testNetAccess {
 			regTestNet = true
+			break
 		}
 	}
 	
