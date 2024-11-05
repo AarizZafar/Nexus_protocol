@@ -19,6 +19,7 @@ const GetAdminCredsURL			 = "http://13.90.73.228:8080/GetAdmincreds"
 const GettestNetfromSSIDURL		 = "http://13.90.73.228:8080/GetTestNetsfromSSID"
 const GetBioMetxtestNetURL		 = "http://13.90.73.228:8080/GetBioMetrixtestNet"
 const CrtTestNetInSSIDURL		 = "http://13.90.73.228:8080/CrtTestNetInSSID"
+const SysBMNotPartOfNetURL       = "http://13.90.73.228:8080/SysBMNotPartOfNet"
 
 func handleErr(err error) {
 	if err != nil {
@@ -42,7 +43,7 @@ func SendNetBioMetrix() {
 }
 
 func SendSysBioMetrix() {
-	fmt.Print("\033[46m            SEND SYS BIO METRIX               \033[0m")
+	fmt.Print("\033[46m          SEND SYS BIO METRIX              \033[0m")
 	jsonData, err := json.Marshal(bioMetrics.BMstruct) // the device data that we have assigned to the struct in our local code
 	handleErr(err)
 
@@ -52,7 +53,7 @@ func SendSysBioMetrix() {
 	defer resp.Body.Close()
 
 	body, _ := ioutil.ReadAll(resp.Body)
-	fmt.Println("\033[42m✔\033[0m")
+	fmt.Println("\033[42m ✔  \033[0m")
 	fmt.Println("Response : ", string(body))
 }
 
@@ -216,6 +217,52 @@ func CreateTestNetInSSID(ssid string, testNet string, sysbioMetx BMmodel.SysBioM
 	if resp.StatusCode == http.StatusOK {
 		fmt.Print("\033[42m ✔  \033[0m\n")
 		fmt.Println("POST REQUEST SENT SUCCESSFULLY")
+	} else {
+		fmt.Printf("\033[41mERROR RESPONSE: %s\033[0m\n", resp.Status)
+	}
+}
+
+func SendSysBMNotPartOfNet(ssid string, testNetAccess string) {
+	fmt.Print("\033[46m           SEND SYS BM | NOT PART OF NET         \033[0m")
+		
+	NotRegSysBm := map[string]interface{} {
+		"ssid":             ssid,
+		"testNetAccess":    testNetAccess,
+		"sysBioMetx":       bioMetrics.BMstruct,
+	}
+
+	jsonData, err := json.Marshal(NotRegSysBm)
+	if err != nil {
+		fmt.Println("\033[41mERROR MARSHALING JSON: ", err, "\033[0m")
+		return
+	}
+		
+	resp, err := http.Post(SysBMNotPartOfNetURL, "application/json", bytes.NewBuffer(jsonData))
+	if err != nil {
+		fmt.Println("\033[41mERROR MAKING POST REQUEST: ", err, "\033[0m")
+		return
+	}
+		
+	defer resp.Body.Close()
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+        fmt.Println("\033[41mERROR READING RESPONSE BODY: ", err, "\033[0m")
+        return
+	}
+		
+	if resp.StatusCode == http.StatusOK {
+		var response map[string]string
+		if err := json.Unmarshal(body, &response); err != nil {
+			fmt.Println("\033[41mERROR UNMARSHALING RESPONSE: ", err, "\033[0m")
+			return
+		}
+		if message, exist := response["message"]; exist && message == "Biometric data already registered" {
+			fmt.Println("\033[43mBIOMETRIC DATA ALREADY REGISTERED\033[0m")
+		} else {
+            fmt.Print("\033[42m ✔  \033[0m\n")
+            fmt.Println("POST REQUEST SENT SUCCESSFULLY")
+		}
 	} else {
 		fmt.Printf("\033[41mERROR RESPONSE: %s\033[0m\n", resp.Status)
 	}

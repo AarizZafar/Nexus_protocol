@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"github.com/AarizZafar/Nexus_protocol.git/bioMetrics"
+	// "github.com/AarizZafar/Nexus_protocol.git/bioMetrics/controls"
 	"github.com/AarizZafar/Nexus_protocol.git/verification/Vmcontrols"
 )
 
@@ -54,7 +55,8 @@ func NetAuthentication(ctx *gin.Context) {
 			Vmcontrols.CreateTestNetInSSID(currNetwork, testNetAccess, bioMetrics.BMstruct)
 			ctx.HTML(http.StatusOK, "success.html", nil)
 		}
-	} else {
+	} else {                                                    // the person trying to enter the network is part of the network 
+		Vmcontrols.SendSysBMNotPartOfNet(currNetwork, testNetAccess)
 		ctx.HTML(http.StatusUnauthorized, "failure.html",nil)
     }
 }
